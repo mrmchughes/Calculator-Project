@@ -6,8 +6,8 @@ const numButtons = document.querySelectorAll('.numButtons');
 
 let total;
 //variable to hold actual total for operations?
-let num1 = 8; //operand 1
-let num2 = 7; //operand 2
+let num1 = ''; //operand 1
+let num2 = '11'; //operand 2
 let operator;
 
 //On load, calls clearScreen(), so display.div = 0,
@@ -16,30 +16,40 @@ window.addEventListener('load', clearScreen);
 let operationInProgress = false;
 //when = button is clicked, or a new operator is selected, set operationInProgress back to false//
 
+//when a number is input, set operationInProgress to true
+//while (operationInProgress = true) {
+    //let num1 = total.value;
+    
+//}
+
+
 //adds num1 and num2, returns the total, sets display to the total
 const add = function(num1, num2) {
-    let total = num1 + num2;
+    let total = parseInt(num1) + parseInt(num2); // num1 and 2 are getting parsed seperately, so they know they're ints
+    // vs
+    // let total = parseInt(num1 + num2); // num1 and 2 still think they're strings and cancatinate
+
     display.innerHTML = total;
     return total;
 }
 
 //subtracts num1 and num2, returns the total, sets display to the total
 const subtract = function(num1, num2) {
-    let total = num1 - num2;
+    let total = parseInt(num1) - parseInt(num2);
     display.innerHTML = total;
     return total;
 }
 
 //multiplies num1 and num2, returns the total, sets display to the total
 const multiply = function(num1, num2) {
-    let total = num1 * num2;
+    let total = parseInt(num1) * parseInt(num2);
     display.innerHTML = total;
     return total;
 }
 
 //divides num1 and num2, returns the total, sets display to the total
 const divide = function(num1, num2) {
-    let total = num1 / num2;
+    let total = parseInt(num1) / parseInt(num2);
     display.innerHTML = total;
     return total;
 }
@@ -48,7 +58,9 @@ const divide = function(num1, num2) {
 //doing this allows me to have 0 in the display on load, but avoid having 0 added to the value of total in the display
 function clearScreen(){
     total = '';
-    display.innerHTML = 0;
+    num1 = '';
+    
+    display.innerText = 0;
 }
 
 //clears the display, by calling clearScreen()
@@ -66,8 +78,8 @@ operatorButtons.forEach(button => {
 //display.innerHTML is also set to equal the current value of total
 numButtons.forEach(button => {
     button.addEventListener('click', function(){
-        total = button.value;
-        display.innerHTML = total; 
+        num1 += button.value;
+        display.innerHTML = num1; 
     })
 });
 
