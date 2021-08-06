@@ -28,7 +28,6 @@ function clearScreen(){
     operationInProgress = false;
     display.innerText = '0';
     console.log(typeof (num1))
-    console.log("I am clear. Total is '"+total+"', num1 is '"+num1+"', num2 is '"+num2+"', operator is '"+operator+"', operationInProgress is '"+operationInProgress+"' and display.innerHTML is '"+display.innerText+"'");
 }
 
 //adds num1 and num2, returns the total, sets display to the total
@@ -39,8 +38,6 @@ const add = function(num1, num2) {
 
     display.innerHTML = Math.round((total + Number.EPSILON) * 100) / 100;
     
-    console.log("I am const add. I am using the operator '"+operator+"' on num1 '"+num1+"' and num2 '"+num2+"'. Total is '"+total+"'.");
-
     return Math.round((total + Number.EPSILON) * 100) / 100;
 }
 
@@ -50,8 +47,6 @@ const subtract = function(num1, num2) {
 
     display.innerHTML = Math.round((total + Number.EPSILON) * 100) / 100;
     
-    console.log("I am const subtract. I am using the operator '"+operator+"' on num1 '"+num1+"' and num2 '"+num2+"'. Total is '"+total+"'");
-
     return Math.round((total + Number.EPSILON) * 100) / 100;
 }
 
@@ -60,8 +55,6 @@ const multiply = function(num1, num2) {
     let total = parseInt(num1) * parseInt(num2);
 
     display.innerHTML = Math.round((total + Number.EPSILON) * 100) / 100;
-    
-    console.log("I am const multiply. I am using the operator '"+operator+"' on num1 '"+num1+"' and num2 '"+num2+"'. Total is '"+total+"'");
     
     return Math.round((total + Number.EPSILON) * 100) / 100;
 }
@@ -76,8 +69,6 @@ const divide = function(num1, num2) {
 
     display.innerHTML = Math.round((total + Number.EPSILON) * 100) / 100;
     
-    console.log("I am const divide. I am using the operator '"+operator+"' on num1 '"+num1+"' and num2 '"+num2+"'. Total is '"+total+"'");
-    
     return Math.round((total + Number.EPSILON) * 100) / 100;
     }
 }
@@ -85,10 +76,7 @@ const divide = function(num1, num2) {
 //when an operator button is clicked, sets operator variable = to button.value, sets display.innerHTML to equal operator 
 operatorButtons.forEach(button => {
     button.addEventListener('click', function() {
-        console.log("Here is num2: '" + num2 + "'");
-        console.log("I am an operator button. I am using the operator '"+operator+"' on num1 '"+num1+"' and num2 '"+num2+"'. Total is '"+total+"'.");
         if (operator != '') {
-            console.log('I did the thing! Operator not empty!')
             operate(num1, operator, num2);
             num1 = parseInt(total);
             num2 = '';
@@ -109,7 +97,6 @@ operatorButtons.forEach(button => {
 numButtons.forEach(button => {
     button.addEventListener('click', function(){
         // Important!! You can use "console.log(string/cancatination)" 
-        console.log("This is a Debug. operationInProgress = " + operationInProgress); 
         if (!operationInProgress){
             if (num1 == 0){
                 num1 = button.value;
@@ -117,17 +104,13 @@ numButtons.forEach(button => {
                 num1 += button.value;
             }
 
-        console.log(typeof (num1) + "I am num1 input! I am using the operator '"+operator+"' on num1 '"+num1+"' and num2 '"+num2+"'. Total is '"+total+"'");
-
-        display.innerHTML = num1; 
+            display.innerHTML = num1; 
         } else {
             if (num2 == 0){
                 num2 = button.value;
             }   else {
                 num2 += button.value;
             }
-
-            console.log("I am num2 input! I am using the operator '"+operator+"' on num1 '"+num1+"' and num2 '"+num2+"'. Total is '"+total+"'");
 
             display.innerHTML = num2;
         }
@@ -144,32 +127,24 @@ equalButton.addEventListener('click', function(){
     } else {
     operate(num1, operator, num2);
     operationInProgress = false;
-
-    console.log("I am the equal button! I am using the operator '"+operator+"' on num1 '"+num1+"' and num2 '"+num2+"'. Total is '"+total+"'");
     }
 });
 
 function operate(num1, operator, num2){ 
-    console.log("I am the operate function! I am using the operator '"+operator+"' on num1 '"+num1+"' and num2 '"+num2+"'. Total is '"+total+"'");
-
     switch (operator){
         case "+":      
             total = add(num1, num2);
-            console.log("I am case +! I am using the operator '"+operator+"' on num1 '"+num1+"' and num2 '"+num2+"'. Total is '"+total+"'.");
 
             break;
         case "-":
-            console.log("I am case -! I am using the operator '"+operator+"' on num1 '"+num1+"' and num2 '"+num2+"'. Total is '"+total+"'.");
             total = subtract(num1, num2);
             
             break;
         case "*":
-            console.log("I am case *! I am using the operator '"+operator+"' on num1 '"+num1+"' and num2 '"+num2+"'. Total is '"+total+"'.");
             total = multiply(num1, num2);
 
             break;
         case "/":
-            console.log("I am case /! I am using the operator '"+operator+"' on num1 '"+num1+"' and num2 '"+num2+"'. Total is '"+total+"'.");
             total = divide(num1, num2);
 
             break;
